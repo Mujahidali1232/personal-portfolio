@@ -193,6 +193,16 @@ export const DATA = {
       link: "https://vercel.com/mujahid-ali-s-projects/case-study",
       github: "https://github.com/Mujahidali1232"
     },
+        {
+      id: 5,
+      title: "mujahid-portfolio",
+      category: "My personal portfolio and project showcase",
+      description: "Portfolio of a web developer highlighting frontend, backend, and database-driven projects..",
+      image: "portflio.png",
+      tech: ["React.js", "TypeScript", "Material UI", "Tailwind CSS"],
+      link: "https://personal-portfolio-jet-xi-24.vercel.app/",
+      github: "https://github.com/Mujahidali1232/personal-portfolio"
+    },
     {
       id: 4,
       title: "Todo App",
