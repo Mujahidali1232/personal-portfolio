@@ -6,9 +6,9 @@ import { useCallback } from "react";
 
 // Constants for better maintainability
 const NAVIGATION_ROUTES = {
-  HOME: '/',
-  ABOUT: '#about',
-  CONTACT: '/contact',
+  HOME: "/",
+  ABOUT: "#about",
+  CONTACT: "#contact",
   GITHUB: DATA.profile.social.github,
   LINKEDIN: DATA.profile.social.linkedin,
   TWITTER: DATA.profile.social.twitter,
@@ -18,20 +18,20 @@ const NAVIGATION_ROUTES = {
 interface NavigationConfig {
   href: string;
   label: string;
-  variant?: 'default' | 'outline';
+  variant?: "default" | "outline";
   external?: boolean;
 }
 
 const NAVIGATION_ITEMS: NavigationConfig[] = [
   {
     href: NAVIGATION_ROUTES.ABOUT,
-    label: 'About Me',
-    variant: 'default',
+    label: "About Me",
+    variant: "default",
   },
   {
     href: NAVIGATION_ROUTES.CONTACT,
-    label: 'Contact Me',
-    variant: 'outline',
+    label: "Contact Me",
+    variant: "outline",
   },
 ];
 
@@ -39,21 +39,21 @@ const NAVIGATION_ITEMS: NavigationConfig[] = [
 const NavigationButton = ({
   href,
   label,
-  variant = 'default',
-  external = false
+  variant = "default",
+  external = false,
 }: NavigationConfig) => {
   // Utility function for smooth scrolling with error handling
   const scrollToSection = useCallback((sectionId: string) => {
     try {
-      const element = document.getElementById(sectionId.replace('#', ''));
+      const element = document.getElementById(sectionId.replace("#", ""));
       if (element) {
         element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
+          behavior: "smooth",
+          block: "start",
         });
       } else {
         // Fallback: scroll to top if element not found
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } catch (error) {
       // Fallback to simple scroll
@@ -61,21 +61,27 @@ const NavigationButton = ({
     }
   }, []);
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      scrollToSection(href);
-    }
-  }, [href, scrollToSection]);
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLAnchorElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      if (href.startsWith('#')) {
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (href.startsWith("#")) {
+        e.preventDefault();
         scrollToSection(href);
       }
-    }
-  }, [href, scrollToSection]);
+    },
+    [href, scrollToSection]
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (href.startsWith("#")) {
+          scrollToSection(href);
+        }
+      }
+    },
+    [href, scrollToSection]
+  );
 
   return (
     <Button
@@ -83,7 +89,7 @@ const NavigationButton = ({
       size="lg"
       variant={variant}
       className={
-        variant === 'default' 
+        variant === "default"
           ? "rounded-full text-base px-8 h-12 bg-primary hover:bg-primary/90 text-background font-bold transition-all duration-300 hover:scale-105"
           : "rounded-full text-base px-8 h-12 border-white/20 hover:bg-white/5 transition-all duration-300 hover:scale-105"
       }
@@ -174,7 +180,11 @@ export function Hero() {
             <span className="text-white font-medium">worldwide</span>.
           </motion.p>
 
-          <div className="flex flex-wrap gap-4 pt-4" role="navigation" aria-label="Main navigation">
+          <div
+            className="flex flex-wrap gap-4 pt-4"
+            role="navigation"
+            aria-label="Main navigation"
+          >
             {NAVIGATION_ITEMS.map((item, index) => (
               <NavigationButton
                 key={`nav-${index}`}
@@ -185,34 +195,40 @@ export function Hero() {
             ))}
           </div>
 
-          <div className="flex items-center gap-6 pt-4 text-muted-foreground" role="navigation" aria-label="Social media links">
-            <a
-              href={NAVIGATION_ROUTES.GITHUB}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded p-1"
-              aria-label="Visit GitHub profile"
+          <div className="pt-4">
+            <div
+              className="flex items-center gap-4 pt-4"
+              role="navigation"
+              aria-label="Social media links"
             >
-              <Github size={24} />
-            </a>
-            <a
-              href={NAVIGATION_ROUTES.LINKEDIN}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded p-1"
-              aria-label="Visit LinkedIn profile"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href={NAVIGATION_ROUTES.TWITTER}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded p-1"
-              aria-label="Visit Twitter profile"
-            >
-              <Twitter size={24} />
-            </a>
+              <a
+                href={NAVIGATION_ROUTES.GITHUB}
+                target="_blank"
+                rel="noreferrer"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                aria-label="Visit GitHub profile"
+              >
+                <Github size={20} />
+              </a>
+              <a
+                href={NAVIGATION_ROUTES.LINKEDIN}
+                target="_blank"
+                rel="noreferrer"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                aria-label="Visit LinkedIn profile"
+              >
+                <Linkedin size={20} />
+              </a>
+              <a
+                href={NAVIGATION_ROUTES.TWITTER}
+                target="_blank"
+                rel="noreferrer"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-muted-foreground hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                aria-label="Visit Twitter profile"
+              >
+                <Twitter size={20} />
+              </a>
+            </div>
           </div>
         </motion.div>
 
@@ -265,7 +281,10 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-muted-foreground/50 hidden md:block" aria-hidden="true">
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-muted-foreground/50 hidden md:block"
+        aria-hidden="true"
+      >
         <ArrowDown size={32} />
       </div>
     </section>

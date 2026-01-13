@@ -43,7 +43,7 @@ export const DATA = {
     clients: "24+",
     email: "aleemujahid445@gmail.com",
     phone: "+92 3063358996",
-    location: "Karachi, Pakistan",
+    location: "Pakistan",
     social: {
       github: "https://github.com/",
       linkedin: "https://linkedin.com/",

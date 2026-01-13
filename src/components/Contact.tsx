@@ -45,7 +45,7 @@ export function Contact() {
         },
         userId
       );
-      
+
       toast({
         title: "Message sent successfully",
         description: "Thanks for reaching out. I'll get back to you soon.",
@@ -93,7 +93,7 @@ export function Contact() {
               <div>
                 <h3 className="font-bold text-white text-lg mb-1">Email</h3>
                 <p className="text-muted-foreground text-sm mb-2">For inquiries and projects</p>
-                <a href={`mailto:${DATA.profile.email}`} className="text-primary hover:underline font-medium">{DATA.profile.email}</a>
+                <a href={`mailto:${DATA.profile.email}`} className="text-primary hover:underline font-medium break-all">{DATA.profile.email}</a>
               </div>
             </div>
 

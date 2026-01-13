@@ -148,7 +148,7 @@ export function About() {
             {/* Info Cards */}
             <motion.div
               variants={container}
-              className="grid grid-cols-2 gap-4 pt-4"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4"
             >
               <Info label="Name" value={DATA.profile.name} />
               <Info label="Email" value={DATA.profile.email} />
@@ -179,15 +179,26 @@ export function About() {
 
 /* Reusable Info Card */
 function Info({ label, value, highlight = false }: { label: string; value: string; highlight?: boolean }) {
+  const isEmail = label.toLowerCase() === 'email';
+
   return (
     <motion.div
       variants={fadeUp}
-      className="glass p-4 rounded-lg border border-white/5"
+      className="glass p-4 rounded-lg border border-white/5 h-full flex flex-col justify-center min-h-[100px]"
     >
       <span className="block text-sm text-muted-foreground mb-1">{label}</span>
-      <span className={`block font-medium ${highlight ? "text-green-400" : "text-white"}`}>
-        {value}
-      </span>
+      {isEmail ? (
+        <a
+          href={`mailto:${value}`}
+          className="block font-medium text-primary hover:underline break-all transition-colors"
+        >
+          {value}
+        </a>
+      ) : (
+        <span className={`block font-medium ${highlight ? "text-green-400" : "text-white"}`}>
+          {value}
+        </span>
+      )}
     </motion.div>
   );
 }
